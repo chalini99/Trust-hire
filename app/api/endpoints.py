@@ -200,3 +200,12 @@ async def health_check():
         "service": settings.APP_NAME,
         "version": settings.APP_VERSION
     }
+@router.post("/interview-questions")
+async def generate_questions(skills: list[str]):
+    questions = []
+
+    for skill in skills:
+        questions.append(f"What are the key concepts of {skill}?")
+        questions.append(f"Explain a real-world project using {skill}.")
+
+    return {"questions": questions}
